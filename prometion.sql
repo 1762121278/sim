@@ -40,6 +40,7 @@ INSERT INTO `dept` VALUES (6, '测试部', '合肥');
 INSERT INTO `dept` VALUES (7, '工程部', '任丘');
 INSERT INTO `dept` VALUES (8, '安全部', '河北');
 
+
 -- ----------------------------
 -- Table structure for emp_role
 -- ----------------------------
