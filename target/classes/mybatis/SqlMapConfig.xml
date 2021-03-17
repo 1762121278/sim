@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--设置settings-->
+    <!--加载属性文件 jdbc.properteis-->
+    <!--起别名-->
+    <!--配置数据库环境-->
+    <!--加载映射-->
+
+</configuration>
