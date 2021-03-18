@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+
 /**
  * @author Today
  */
@@ -75,6 +77,10 @@ public class EmployeeService {
             sources.setChildren(child);
         }
         return parent;
+    }
+
+    public Employee selectByPrimaryKey(Integer eid){
+        return employeeMapper.selectByPrimaryKey(eid);
     }
 
 }

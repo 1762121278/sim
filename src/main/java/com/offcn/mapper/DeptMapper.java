@@ -19,12 +19,23 @@ public interface DeptMapper {
      * @Return: int
      */
     int insert(Dept record);
+    /**
+     * @description: 修改
+     * @Param: [record]
+     * @Return: int
+     */
+    int updateByPrimaryKey(Dept dept);
+
+    /**
+     * @description: 删除部门
+     * @Param: [deptno]
+     * @Return: int
+     */
+    int deleteByPrimaryKey(Integer deptno);
 
     long countByExample(DeptExample example);
 
     int deleteByExample(DeptExample example);
-
-    int deleteByPrimaryKey(Integer deptno);
 
     int insertSelective(Dept record);
 
@@ -36,5 +47,4 @@ public interface DeptMapper {
 
     int updateByPrimaryKeySelective(Dept record);
 
-    int updateByPrimaryKey(Dept record);
 }

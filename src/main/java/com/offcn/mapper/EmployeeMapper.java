@@ -23,6 +23,13 @@ public interface EmployeeMapper {
      */
     Employee getUserInfo(@Param("userName") String userName,@Param("passWord")String passWord);
 
+    /**
+     * @description: eid查询员工信息
+     * @Param: [example]
+     * @Return: long
+     */
+    Employee selectByPrimaryKey(Integer eid);
+
     long countByExample(EmployeeExample example);
 
     int deleteByExample(EmployeeExample example);
@@ -32,8 +39,6 @@ public interface EmployeeMapper {
     int insert(Employee record);
 
     int insertSelective(Employee record);
-
-    Employee selectByPrimaryKey(Integer eid);
 
     int updateByExampleSelective(@Param("record") Employee record, @Param("example") EmployeeExample example);
 

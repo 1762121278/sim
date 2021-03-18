@@ -28,8 +28,8 @@
                     <li class="nav-header">
                         <div class="dropdown profile-element mylogo">
                             <span>
-                            	<img alt="image" class="img-circle" width="50px" height="60px"  src="img/${sessionScope.activeUser.pic}" />
-                            </span>
+                            	<img alt="image" class="img-circle" width="80px" height="80px"  src="img/${sessionScope.activeUser.pic}" />
+                            </span> <br>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">${sessionScope.activeUser.dept.dname}</strong></span>
@@ -50,7 +50,7 @@
                         </div>
                         <div class="logo-element">H+
                         </div>
-                    </li>
+                    </li>  <br>
                     <li>
                         <c:forEach items="${sessionScope.sources}" var="parent">
                             <li>

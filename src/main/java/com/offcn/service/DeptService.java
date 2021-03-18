@@ -31,4 +31,21 @@ public class DeptService {
         return deptMapper.insert(dept) > 0;
     }
 
+    /**
+     * @description: 修改部门
+     * @Param: [dept]
+     * @Return: int
+     */
+    public int updateDept(Dept dept) {
+        return deptMapper.updateByPrimaryKey(dept);
+    }
+
+    /**
+     * @description: 删除部门
+     * @Param: [dept]
+     * @Return: int
+     */
+    public int deleteDept(Integer deptno) {
+        return deptMapper.deleteByPrimaryKey(deptno);
+    }
 }

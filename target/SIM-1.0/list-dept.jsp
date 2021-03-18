@@ -94,8 +94,8 @@
                                             <td>${dept.dname}</td>
                                             <td>${dept.local}</td>
                                             <td>
-                                                <a href="update-dept.jsp"><i class="glyphicon glyphicon-edit  text-navy"></i></a>
-                                                <a href="javascript:void(0)" class="btndel"><i class="glyphicon glyphicon-remove  text-navy"></i></a>
+                                                <a href="update-dept.jsp?dname=${dept.dname}&local=${dept.local}&deptno=${dept.deptno}"><i class="glyphicon glyphicon-edit  text-navy"></i></a>
+                                                <a href="javascript:a(${dept.deptno})"  class="btndel"><i class="glyphicon glyphicon-remove  text-navy"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -142,7 +142,7 @@
 <script>
 
     //点击删除
-    $('.btndel').click(function () {
+    function a(deptno) {
         swal({
             title: "您确定要删除这条信息吗",
             text: "删除后将无法恢复，请谨慎操作！",
@@ -153,11 +153,21 @@
             closeOnConfirm: false
         }, function () {//此函数是点击删除执行的函数
             //这里写ajax代码
-            // 以下是成功的提示框，请在ajax回调函数中执行
-            swal("删除成功！", "您已经永久删除了这条信息。", "success");
-        });
-    });
 
+                $.ajax({
+                    type: "get",
+                    url:'${pageContext.request.contextPath}/dept/deleteDept?deptno='+deptno,
+                    success(data){
+                        if(data){
+                            // 以下是成功的提示框，请在ajax回调函数中执行
+                            swal("删除成功！", "您已经永久删除了这条信息。", "success");
+                            window.location.href="${pageContext.request.contextPath}/dept/showDeptInfo";
+                        }
+
+                    }
+                })
+        });
+    }
 
     $("#demo1").click(function() {
         //基本消息框－留着备用

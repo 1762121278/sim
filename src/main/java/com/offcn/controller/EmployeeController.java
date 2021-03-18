@@ -2,6 +2,7 @@ package com.offcn.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.offcn.pojo.Dept;
 import com.offcn.pojo.EmpRole;
 import com.offcn.pojo.Employee;
 import com.offcn.pojo.Sources;
@@ -32,12 +33,13 @@ public class EmployeeController {
     @RequestMapping("/showEmployeeInfo")
     public String showEmployeeInfo(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                                    @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
-                                    HttpSession session){
+                                   HttpSession session){
         PageHelper.startPage(pageNum,pageSize);
         List<Employee> employeeList = employeeService.showEmployeeInfo();
         PageInfo<Employee> employeePageInfo = new PageInfo<>(employeeList);
         session.setAttribute("employeePageInfo",employeePageInfo);
         return "redirect:/list-employee.jsp";
+
     }
 
     @RequestMapping("/exportExcelUtil")
@@ -56,16 +58,21 @@ public class EmployeeController {
             List<EmpRole> empRoleList = employeeService.getEmpRoleByEid(userInfo.getEid());
             List<Sources> sourcesList = employeeService.getSourcesByRoleId(empRoleList.get(0).getRoleFk());
             session.setAttribute("sources",sourcesList);
-            System.out.println("123:"+userInfo);
-            for (Sources sources : sourcesList) {
-                System.out.println(sources);
-            }
-            System.out.println(456);
             return "redirect:/index.jsp";
         }else {
             return "redirect:/login.jsp";
         }
     }
 
+    @RequestMapping("/selectByEid")
+    public String selectByEid(Integer eid,String dname,String rolename,HttpSession session)  {
+        System.out.println("1"+eid+dname+rolename);
+        Employee employee = employeeService.selectByPrimaryKey(eid);
+        Dept dept = new Dept(); dept.setDname(dname);
+        employee.setDept(dept);
+        employee.setRoleName(rolename);
+        session.setAttribute("employee",employee);
+        return "redirect:/show-employee.jsp";
+    }
 
 }

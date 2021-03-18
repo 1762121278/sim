@@ -12,6 +12,15 @@ public class Dept implements Serializable {
 
     private String local;
 
+    public Dept() {
+    }
+
+    public Dept(Integer deptno, String dname, String local) {
+        this.deptno = deptno;
+        this.dname = dname;
+        this.local = local;
+    }
+
     public Integer getDeptno() {
         return deptno;
     }
@@ -25,7 +34,7 @@ public class Dept implements Serializable {
     }
 
     public void setDname(String dname) {
-        this.dname = dname == null ? null : dname.trim();
+        this.dname = dname;
     }
 
     public String getLocal() {
@@ -33,7 +42,7 @@ public class Dept implements Serializable {
     }
 
     public void setLocal(String local) {
-        this.local = local == null ? null : local.trim();
+        this.local = local;
     }
 
     @Override

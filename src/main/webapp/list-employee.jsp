@@ -36,9 +36,11 @@
                 </div>
                 <div class="col-sm-2">
                     <select class="selectpicker form-control">
-                        <option value="0">选择类型</option>
-                        <option value="1">项目名称</option>
-                        <option value="2">项目经理</option>
+                        <option value="0">选择部门</option>
+                        <c:forEach items="${sessionScope.employeePageInfo.list}" var="employee">
+                            <option>${employee.dept.dname}</option>
+                        </c:forEach>
+
                     </select>
                 </div>
 
@@ -70,7 +72,7 @@
                         <th>联系电话</th>
                         <th>入职时间</th>
                         <th>备注</th>
-                        <th>状态</th>
+                        <th>照片</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
@@ -89,9 +91,9 @@
                             <td>${employee.telephone}</td>
                             <td>${employee.hiredate}</td>
                             <td>${employee.remark}</td>
-                            <td>无</td>
+                            <td><img alt="image" class="img-circle" width="50px" height="50px"  src="img/${employee.pic}"/></td>
                             <td class="text-right">
-                                <a href="show-employee.jsp" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>编辑</a>
+                                <a href="${pageContext.request.contextPath}/employee/selectByEid?eid=${employee.eid}&dname=${employee.dept.dname}&rolename=${employee.empRoleList[0].role.rolename}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>编辑</a>
                                 <button class="btn btn-danger btn-xs btndel"><i class="fa fa-close"></i>删除</button>
                             </td>
                         </tr>

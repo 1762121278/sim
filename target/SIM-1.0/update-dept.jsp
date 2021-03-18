@@ -29,16 +29,20 @@
                         <h5>员工管理<small>>添加信息</small></h5>
                     </div>
                     <div class="ibox-content">
-                        <form method="get" action="#" class="form-horizontal">
+                        <form method="get" action="${pageContext.request.contextPath}/dept/updateDept" class="form-horizontal">
                        	<div class="row">
                             <div class="form-group">
+                                <label class="col-sm-2 control-label">部门编号</label>
+                                <div class="col-sm-3">
+                                    <input name="deptno" type="text" class="form-control input-sm" value="${param.deptno}"/>
+                                </div> <br><br><br>
                                 <label class="col-sm-2 control-label">部门名称</label>
                                 <div class="col-sm-3">
-                                    <input name="name" type="text" class="form-control input-sm">
-                                </div>
-                                <label class="col-sm-2 col-sm-offset-1 control-label">部门位置</label>
+                                    <input name="dname" type="text" class="form-control input-sm" value="${param.dname}"/>
+                                </div><br><br><br>
+                                <label class="col-sm-2  control-label">部门位置</label>
                                 <div class="col-sm-3">
-                                    <input name="name" type="text" class="form-control input-sm">
+                                    <input name="local" type="text" class="form-control input-sm" value="${param.local}"/>
                                 </div>
                             </div>
                         </div>
