@@ -203,4 +203,5 @@
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from role_sources where role_fk = #{roleid}
   </delete>
+
 </mapper>

@@ -3,10 +3,8 @@ package com.offcn.service;
 import com.offcn.mapper.EmpRoleMapper;
 import com.offcn.mapper.RoleMapper;
 import com.offcn.mapper.RoleSourcesMapper;
-import com.offcn.pojo.EmpRole;
-import com.offcn.pojo.EmpRoleExample;
-import com.offcn.pojo.Role;
-import com.offcn.pojo.RoleSources;
+import com.offcn.mapper.SourcesMapper;
+import com.offcn.pojo.*;
 import jdk.nashorn.internal.runtime.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +25,9 @@ public class RoleService {
 
     @Autowired
     private EmpRoleMapper empRoleMapper;
+
+    @Autowired
+    private SourcesMapper sourcesMapper;
 
     public List<Role> showRoleInfo(){
         return roleMapper.showRoleInfo();
@@ -62,5 +63,19 @@ public class RoleService {
             roleMapper.deleteByPrimaryKey(roleid);
             return true;
         }
+    }
+
+    /**
+     * @description: 根据角色ID查询资源树集合
+     * @Param: [roleid]
+     * @Return: java.util.List<com.offcn.pojo.Sources>
+     */
+    public List<Sources> selectSourcesByRoleId(int roleid){
+        List<Sources> firstDirList = sourcesMapper.selectFirstDir(roleid);
+        for (Sources sources : firstDirList) {
+            List<Sources> secondDirList = sourcesMapper.selectSecondDir(sources.getId());
+            sources.setChildren(secondDirList);
+        }
+        return firstDirList;
     }
 }

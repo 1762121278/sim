@@ -40,6 +40,18 @@ public interface SourcesMapper {
      * @Return: java.util.List<com.offcn.pojo.Sources>
      */
     List<Sources> getChildByRoleId(int pid);
+    /**
+     * @description: 根据roleid查询一级目录
+     * @Param: [roleid]
+     * @Return: java.util.List<com.offcn.pojo.Sources>
+     */
+    List<Sources> selectFirstDir(int roleid);
+    /**
+     * @description: 根据资源id查询二级目录
+     * @Param: [roleid]
+     * @Return: com.offcn.pojo.Sources
+     */
+    List<Sources> selectSecondDir(int id);
 
     long countByExample(SourcesExample example);
 

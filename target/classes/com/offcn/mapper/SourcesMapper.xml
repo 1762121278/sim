@@ -244,4 +244,13 @@
         select * from sources where pid = #{pid}
   </select>
 
+  <!--查询一级目录-->
+  <select id="selectFirstDir" resultType="com.offcn.pojo.Sources">
+    select s.* from role_sources as r join sources as s on r.resources_fk = s.id where role_fk = #{roleid} and s.pid='1'
+  </select>
+
+  <!--查询二级目录-->
+  <select id="selectSecondDir" resultType="com.offcn.pojo.Sources">
+    select *  from sources where pid = #{id}
+  </select>
 </mapper>

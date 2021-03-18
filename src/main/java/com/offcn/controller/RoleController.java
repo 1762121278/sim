@@ -3,7 +3,9 @@ package com.offcn.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.offcn.pojo.Role;
+import com.offcn.pojo.Sources;
 import com.offcn.service.RoleService;
+import jdk.nashorn.internal.runtime.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,6 +70,20 @@ public class RoleController {
         System.out.println(roleid);
         Log.getLog("获取到角色roleid为{}","删除角色",roleid);
         return roleService.deleteRole(roleid);
+    }
+    /**
+     * @description: 根据roleid查询资源
+     * @Param: [roleid]
+     * @Return: boolean
+     */
+    @RequestMapping("/selectSourcesByRoleId")
+    @ResponseBody
+    public List<Sources> selectSourcesByRoleId(@RequestParam("roleid") int roleid){
+        List<Sources> sourcesList = roleService.selectSourcesByRoleId(roleid);
+        for (Sources sources : sourcesList) {
+            System.out.println(sources);
+        }
+        return sourcesList;
     }
 
 }

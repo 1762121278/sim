@@ -17,6 +17,7 @@
     <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
     <link href="css/plugins/select/bootstrap-select.min.css" rel="stylesheet">
 	<link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link rel="stylesheet" href="css/plugins/zTreeStyle/zTreeStyle.css"/>
 </head>
 
 <body class="gray-bg">
@@ -27,6 +28,7 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>编辑角色</h5>
+                        <button value="${param.roleid}" hidden></button>
                     </div>
                     <div class="ibox-content">
                         <form class="form-horizontal">
@@ -34,43 +36,32 @@
                                 <label class="col-sm-3 control-label">角色名称：</label>
 
                                 <div class="col-sm-8">
-                                    <input type="email" class="form-control">
+                                    <input type="text" class="form-control" value="${param.rolename}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">角色描述：</label>
 
                                 <div class="col-sm-8">
-                                    <input type="email" class="form-control">
+                                    <input type="text" class="form-control" value="${param.roledis}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">角色权限：</label>
-
                                 <div class="col-sm-8">
-                                     <ul>
-                                        <li>check1</li>
-                                        <li>check1</li>
-                                        <li>check1</li>
-                                        <li>
-                                           <ul>
-                                               <li>check2</li>
-                                               <li>check2</li>
-                                           </ul>
-                                        </li>
-                                     
-                                     </ul>
+                                    <ul id="treeDemo" class="ztree"></ul>
                                 </div>
+
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">是否启用：</label>
                                 <div class="col-sm-8">
                                     <div class="switch">
 			                            <div class="onoffswitch">
-			                                <input type="checkbox" checked class="onoffswitch-checkbox" id="status">
+			                                <input type="checkbox" checked class="onoffswitch-checkbox" id="status" value="${param.rolename}">
 			                                <label class="onoffswitch-label" for="status">
-			                                    <span class="onoffswitch-inner"></span>
-			                                    <span class="onoffswitch-switch"></span>
+			                                    <span class="onoffswitch-inner" value="0"></span>
+			                                    <span class="onoffswitch-switch" value="1"></span>
 			                                </label>
 			                            </div>
 			                        </div>
@@ -79,7 +70,7 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-8">
                                     <button class="btn btn-sm btn-white" type="submit"><i class="fa fa-save"></i> 保存</button>
-                                    <button class="btn btn-sm btn-white" type="submit"><i class="fa fa-undo"></i> 重置</button>
+                                    <button class="btn btn-sm btn-white" type="button"><i class="fa fa-undo"></i> 重置</button>
                                 </div>
                             </div>
                         </form>
@@ -97,6 +88,27 @@
     <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
 	<script src="js/plugins/select/bootstrap-select.min.js"></script>
 	<script src="js/plugins/layer/laydate/laydate.js"></script>
+    <script src="js/plugins/ztree/jquery.ztree.core.min.js"></script>
+    <script src="js/plugins/ztree/jquery.ztree.exedit.js"></script>
+    <script src="js/plugins/ztree/jquery.ztree.excheck.js"></script>
+    <%--ztree树js--%>
+    <script type="text/javascript">
+        window.onload = function () {
+            var roleid="${param.roleid}";
+            var setting = {
+                async: {
+                    enable: true,
+                    url: "${pageContext.request.contextPath}/role/selectSourcesByRoleId?roleid="+roleid,
+                    autoParam: ["id", "name"]
+                },
+                check: {
+                    enable: true
+                }
+
+            }
+            $.fn.zTree.init($("#treeDemo"), setting);
+        };
+    </script>
    
    <!-- 修复日期控件长度-->
    <link href="css/customer.css" rel="stylesheet">

@@ -109,7 +109,7 @@
                                         <td>${role.roledis}</td>
                                         <td>${role.status}</td>
                                         <td>
-                                            <a href="update-role.jsp"><i
+                                            <a href="update-role.jsp?roleid=${role.roleid}&rolename=${role.rolename}&roledis=${role.roledis}&status=${role.status}"><i
                                                     class="glyphicon glyphicon-edit  text-navy"></i></a>
                                             <a href="javascript:deleteRole(${role.roleid})" value="${role.roleid}"
                                                id="btndel" class="btndel"><i
@@ -179,14 +179,6 @@
     $(document).ready(function () {
         // 设置按钮的样式
         $('.selectpicker').selectpicker('setStyle', 'btn-white').selectpicker('setStyle', 'btn-sm');
-        $.ajax({
-            type: 'GET',
-            url: "${pageContext.request.contextPath}/role/showRoleInfo",
-            async: 'true',
-            success: function () {
-
-            }
-        });
     });
 </script>
 <script type="text/javascript">
